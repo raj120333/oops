@@ -2,9 +2,6 @@ package OOPs.options;
 
 <<<<<<< HEAD
 public class Income extends Transaction
-=======
-public class Income extends Option
->>>>>>> branch 'master' of https://github.com/raj120333/oops.git
 {
 	public Income()
 	{	
