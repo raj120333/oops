@@ -1,6 +1,6 @@
 package OOPs.options;
 
-public class Expenditure
+public class Expenditure implements Option
 {
 	public String username;
 	public float value;
