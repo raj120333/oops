@@ -1,6 +1,6 @@
 package OOPs.options; 
 
-<<<<<<< HEAD
+
 public class Income extends Transaction
 {
 	public Income()
