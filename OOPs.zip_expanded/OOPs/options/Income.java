@@ -1,6 +1,6 @@
 package OOPs.options; 
 
-public class Income implements Option
+public class Income extends Option
 {
 	public String username;
 	public float value;
