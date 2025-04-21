@@ -22,15 +22,16 @@ public class Main {
         {
         	Account current = a.signup();
 		System.out.println("Press 1->Income
-				   	  2->Expenses
+				   	  2->Expenditure
 				   	  3->Savings
 				   	  4->Budget")
 		int option;
 		//input option
 		if(option == 1){
-			Income(current.username, float value, current.type)
+			Income(current.getUsername(), float value, current.getType())
 		}
 		else if(option == 2){
+			Expenditure
 		}
 		else if(option == 3){
 		}
