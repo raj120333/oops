@@ -28,12 +28,14 @@ public class Main {
 		int option;
 		//input option
 		if(option == 1){
-			Income(current.getUsername(), float value, current.getType())
+			Income income = new Income(current.getUsername(), float value, current.getType());
+			income.addIncome();
 		}
 		else if(option == 2){
-			Expenditure
+			Expenditure(current.getUsername(), float value, current.getType());
 		}
 		else if(option == 3){
+			
 		}
 		else if(option == 4){
 		}
