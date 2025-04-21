@@ -21,6 +21,22 @@ public class Main {
         else
         {
         	Account current = a.signup();
+		System.out.println("Press 1->Income
+				   	  2->Expenses
+				   	  3->Savings
+				   	  4->Budget")
+		int option;
+		//input option
+		if(option == 1){
+			current
+		}
+		else if(option == 2){
+		}
+		else if(option == 3){
+		}
+		else if(option == 4){
+		}
+
         }
     }
     
