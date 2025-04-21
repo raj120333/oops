@@ -47,6 +47,10 @@ public class Account
 	{
 		return this.password;
 	}
+	public boolean getType(){
+		return this.type;
+	}
+
 
 	public void addIncome(String username, float value, String type) {
         Income newIncome = new Income(username, value, type);
