@@ -1,6 +1,10 @@
 package OOPs.options;
 
+<<<<<<< HEAD
 public class Expenditure extends Transaction
+=======
+public class Expenditure extends Option
+>>>>>>> branch 'master' of https://github.com/raj120333/oops.git
 {
 	public Expenditure()
 	{	

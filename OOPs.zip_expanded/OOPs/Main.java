@@ -20,7 +20,28 @@ public class Main {
         }
         else
         {
-        	
+        	Account current = a.signup();
+		System.out.println("Press 1->Income
+				   	  2->Expenditure
+				   	  3->Savings
+				   	  4->Budget")
+		int option;
+		//input option
+		if(option == 1){
+			System.out.println("Enter Income to be added");
+			float value;
+			//input value
+			current.addIncome(current.getUsername(),value, current.getType());
+		}
+		else if(option == 2){
+			Expenditure(current.getUsername(), float value, current.getType());
+		}
+		else if(option == 3){
+			
+		}
+		else if(option == 4){
+		}
+
         }
     }
     
