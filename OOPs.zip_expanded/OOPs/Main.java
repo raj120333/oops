@@ -28,7 +28,7 @@ public class Main {
 		int option;
 		//input option
 		if(option == 1){
-			Income(current., float value, String type)
+			Income(current.username, float value, String type)
 		}
 		else if(option == 2){
 		}
