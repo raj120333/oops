@@ -28,8 +28,10 @@ public class Main {
 		int option;
 		//input option
 		if(option == 1){
-			Income income = new Income(current.getUsername(), float value, current.getType());
-			income.addIncome();
+			System.out.println("Enter Income to be added");
+			float value;
+			//input value
+			income.addIncome(current.getUsername(),value, current.getType());
 		}
 		else if(option == 2){
 			Expenditure(current.getUsername(), float value, current.getType());
