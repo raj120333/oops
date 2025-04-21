@@ -20,7 +20,7 @@ public class Main {
         }
         else
         {
-        	
+        	Account current = a.signup();
         }
     }
     
