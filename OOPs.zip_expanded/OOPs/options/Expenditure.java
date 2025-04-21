@@ -1,15 +1,11 @@
 package OOPs.options;
 
-public class Expenditure
+public class Expenditure extends Transaction
 {
-	public String username;
-	public float value;
-	String type;
 	public Expenditure()
 	{	
+		super();
 		username = "NewInc";
-		value = 0;
-		type = "Monthly";
 	}
 	public Expenditure(String username, float value, String type)
 	{

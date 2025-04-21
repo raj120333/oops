@@ -13,10 +13,10 @@ public class Main {
         String i = "";
         //take input into check input
         Access a = new Access(check(i),accounts);
+        Account current = a.login();
         if(check(i))
         {
-        	Account current = a.login();
-        	
+        	current = a.login();
         }
         else
         {
