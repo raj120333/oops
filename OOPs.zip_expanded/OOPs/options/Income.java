@@ -2,14 +2,10 @@ package OOPs.options;
 
 public class Income extends Option
 {
-	public String username;
-	public float value;
-	String type;
 	public Income()
 	{	
+		super();
 		username = "NewInc";
-		value = 0;
-		type = "Monthly";
 	}
 	public Income(String username, float value, String type)
 	{
