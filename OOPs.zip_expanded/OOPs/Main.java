@@ -31,7 +31,7 @@ public class Main {
 			System.out.println("Enter Income to be added");
 			float value;
 			//input value
-			income.addIncome(current.getUsername(),value, current.getType());
+			current.addIncome(current.getUsername(),value, current.getType());
 		}
 		else if(option == 2){
 			Expenditure(current.getUsername(), float value, current.getType());
