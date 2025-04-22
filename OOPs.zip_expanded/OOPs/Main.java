@@ -9,7 +9,7 @@ public class Main {
     public static void main(String args[])
     {
         System.out.println("Welcome to FinBits");
-        System.out.println("Enter 1 for login, 0 for signup and anything else for exiting up");
+        System.out.println("Enter 1 for login, 0 for signup and anything else for exiting");
         String i = "";
         //take input into check input
         Access a = new Access(check(i),accounts);
@@ -20,28 +20,7 @@ public class Main {
         }
         else
         {
-        	Account current = a.signup();
-		System.out.println("Press 1->Income
-				   	  2->Expenditure
-				   	  3->Savings
-				   	  4->Budget")
-		int option;
-		//input option
-		if(option == 1){
-			System.out.println("Enter Income to be added");
-			float value;
-			//input value
-			current.addIncome(current.getUsername(),value, current.getType());
-		}
-		else if(option == 2){
-			Expenditure(current.getUsername(), float value, current.getType());
-		}
-		else if(option == 3){
-			
-		}
-		else if(option == 4){
-		}
-
+        	current = a.signup();
         }
     }
     

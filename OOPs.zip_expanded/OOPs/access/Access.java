@@ -56,7 +56,7 @@ public class Access {
 		System.out.println("Enter your preferred username");
 		//take username as input
 		Account a = this.trav_array(accounts, username);
-		if(a != null)
+		if(a == null)
 		{
 			a = new Account(username);
 			return a;
@@ -103,7 +103,7 @@ public class Access {
 	Account trav_array(List<Account> accounts, String username) {
 		for(int i = 0; i < accounts.size();i++)
 		{
-			if(accounts.get(i).getUsername() == username ) {
+			if(accounts.get(i).getUsername().equals(username) ) {
 				return accounts.get(i);
 			}
 		}

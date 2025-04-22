@@ -3,7 +3,7 @@ package OOPs.transactions;
 public class Transaction {
 	public String username;
 	public float value;
-	String type;
+	public String type;
 	
 	Transaction()
 	{

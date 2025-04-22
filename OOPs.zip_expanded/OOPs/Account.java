@@ -1,22 +1,30 @@
 package OOPs;
 
-import java.util.Vector;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import OOPs.options.*;
+import OOPs.transactions.*;
 
 
 public class Account
-{
-	String username;
-	long phone;
-	String email;
-	String password;
-	int savings;
-	int IncomeNo;
-	int ExpenditureNo;
+{ 
+	private String username;
+	private long phone;
+	private String email;
+	private String password;
+	protected int savings;
+	protected int IncomeNo;
+	protected int ExpenditureNo;
 	boolean type; //tells whether account is savings or business account savings=0 and business=1
-	Vector <Income> incomes = new Vector();
-	Vector <Expenditure> expenses = new Vector();
-	long balance;
+	protected List<Income> incomes = new ArrayList<>();
+	protected List<Expenditure> expenses = new ArrayList<>();
+	protected long balance;
+	
+	protected int budget;
+	protected String budgetType;
+	protected LocalDate lastLoginDate;
 	public Account()
 	{
 		username = new String();
@@ -25,6 +33,9 @@ public class Account
 		IncomeNo = 0;
 		ExpenditureNo = 0;
 		balance = 0;
+		lastLoginDate = LocalDate.now(); // or null if uninitialized
+		this.budget = 0;
+		this.budgetType = "Monthly";
 	}
 	public Account(String username)
 	{
@@ -52,7 +63,7 @@ public class Account
 	}
 
 
-	public void addIncome(String username, float value, String type) {
+	/*public void addIncome(String username, float value, String type) {
         Income newIncome = new Income(username, value, type);
         incomes.add(newIncome);
         balance += value; // Increase balance
@@ -67,5 +78,5 @@ public class Account
         balance -= value; // Decrease balance
         ExpenditureNo++;
         System.out.println("Expenditure added: " + username + " | Amount: " + value);
-    }
+    }*/
 }
