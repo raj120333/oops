@@ -4,12 +4,19 @@ import java.time.LocalDate;
 import OOPs.*;
 
 import OOPs.transactions.*;
-public class Options extends Account{
-	
-	Options()
+import java.io.*;
+public class Options{
+	Console con = System.console();
+	Account a;
+	public Options(Account a)
 	{
+		this.a = a;
+		updation();
+		System.out.println("Your budget is "+a.budgetType);
 		int i = 0;
 		System.out.println("Choose:/n 1.Income /n 2.Expenditure /n 3.Budget /n 4.Savings/n Enter 0 to exit");
+		String t = con.readLine();
+		i = Integer.parseInt(t);
 		switch(i)
 		{
 		case 0:
@@ -28,104 +35,147 @@ public class Options extends Account{
 			Savings s = new Savings();
 			break;
 		default:
-			Options O = new Options();
+			Options O = new Options(a);
 		}
 	}
 	public class IncomeOption implements option
 	{
-		
 		IncomeOption()
 		{
-			for(int i = 0;i<incomes.size();i++)
+			for(int i = 0;i<a.getIncomes().size();i++)
 			{
-				System.out.println((i+1)+". "+this.toString(incomes.get(i)));
+				System.out.println((i+1)+". "+this.toString(a.getIncomes().get(i)));
 			}
 			System.out.println("Press 0 to add an income, Press the nth income to edit it, Press any other key to go to options");
-			int i =0;
-			//Take Input
+			int i;
+			String t = con.readLine();
+			i = Integer.parseInt(t);
 			if(i==0)
 			{
 				add();
 			}
-			else if(1<=i && i<=incomes.size()+1)
+			else if(1<=i && i<=a.getIncomes().size()+1)
 			{
-				String username ="";
-				float value =0;
-				String type = "";
+				int j;
+				System.out.println("Do you want to edit or delete the income? Press 1 to edit and 0 to delete and any other key to go to options");
+				String k = con.readLine();
+				j = Integer.parseInt(k);
+				if(j==0) {
+				String username;
+				float value;
+				String type;
 				System.out.println("Enter income name: ");
-				//take input
+				username = con.readLine();
 				System.out.println("Enter how much income: ");
-				//take input
-				System.out.println("Enter the type of income i.e: one time, monthly, quarterly or annually: ");
-				//take input
-				incomes.set(i-1, new Income(username, value, type));
+				String s = con.readLine();
+				value = Float.parseFloat(s);
+				System.out.println("Enter the type of income default: monthly; Type 1. one-time \n2. quarterly \n3.annually");
+				s = con.readLine();
+				int l = Integer.parseInt(s);
+				switch(l)
+				{
+				case 1:
+					type = "one-time";
+					break;
+				case 2:
+					type = "quarterly";
+					break;
+				case 3:
+					type = "annually";
+					break;
+				default:
+					type = "monthly";
+				}
+				a.getIncomes().set(i-1, new Income(username, value, type));
+				}
+				else if(j==1)
+				{
+					delete(i);
+				}
+				else
+				{
+					Options o = new Options(a);
+				}
 			}
 			else
 			{
-				Options o = new Options();
+				Options o = new Options(a);
 			}
 		}
 		public void add()
 		{
 			Income I = new Income();
-			incomes.add(I);
-	        IncomeNo++;
+			a.getIncomes().add(I);
+	        a.IncomeNo++;
 	        System.out.println("Income added: " + I.username + " | Amount: " + I.value);
 		}
-
-		public void displayBalance()
-		{
-			
-			
-		}
-
 		public String toString(Transaction t)
 		{
 			Income I = (Income) t;
 			return ""+I.username+" : Rs."+I.value+" : "+ I.type;		
-	    }  
+	    }
+		public void delete(int i) 
+		{
+			a.getIncomes().remove(i-1);
+			a.IncomeNo--;
+			IncomeOption o = new IncomeOption();
+		}  
 	}
 	public class ExpenditureOption implements option
 	{
 		ExpenditureOption()
 		{
-			for(int i = 0;i<expenses.size();i++)
+			for(int i = 0;i<a.getExpenses().size();i++)
 			{
-				System.out.println("\n"+this.toString(expenses.get(i)));
+				System.out.println("\n"+this.toString(a.getExpenses().get(i)));
 			}
 			System.out.println("Press 0 to add an expense, Press the nth expense to edit it, Press any other key to go to options");
-			int i =0;
-			//Take Input
+			int i;
+			String t = con.readLine();
+			i = Integer.parseInt(t);
 			if(i==0)
 			{
 				add();
 			}
-			else if(1<=i && i<=expenses.size()+1)
+			else if(1<=i && i<=a.getExpenses().size()+1)
 			{
-				String username ="";
-				float value =0;
-				String type = "";
+				String username;
+				float value;
+				String type;
 				System.out.println("Enter expense name: ");
-				//take input
+				username = con.readLine();
 				System.out.println("Enter how much expense: ");
-				//take input
-				System.out.println("Enter the type of expense i.e: one time, monthly, quarterly or annually: ");
-				//take input
-				expenses.set(i-1, new Expenditure(username, value, type));
+				String s = con.readLine();
+				value = Float.parseFloat(s);
+				System.out.println("Enter the type of expense default: monthly; Type 1. one-time \n2. quarterly \n3.annually");
+				s = con.readLine();
+				int l = Integer.parseInt(s);
+				switch(l)
+				{
+				case 1:
+					type = "one-time";
+					break;
+				case 2:
+					type = "quarterly";
+					break;
+				case 3:
+					type = "annually";
+					break;
+				default:
+					type = "monthly";
+				}
+				a.getExpenses().set(i-1, new Expenditure(username, value, type));
 			}
 			else
 			{
-				Options o = new Options();
+				Options o = new Options(a);
 			}
 		}
 		public void add()
-		{
-			
-		}
-
-		public void displayBalance()
-		{
-			
+		{			Expenditure E = new Expenditure();
+			a.getExpenses().add(E);
+	        a.ExpenditureNo++;
+	        System.out.println("Expense added: " + E.username + " | Amount: " + E.value);
 			
 		}
 
@@ -135,6 +185,12 @@ public class Options extends Account{
 			return ""+I.username+" : Rs."+I.value+" : "+ I.type;
 		}
 		
+		public void delete(int i)
+		{
+			a.getExpenses().remove(i-1);
+			a.ExpenditureNo--;
+			ExpenditureOption o = new ExpenditureOption();
+		}
 	}
 	public class Budget
 	{
@@ -142,110 +198,136 @@ public class Options extends Account{
 		{
 			System.out.println(this.toString());
 			System.out.println("Type 0 to edit the Budget and anything else to go back to options menu");
-			String s = "";
-			//take input
-			if(s.equals("0"))
+			int i;
+			String t = con.readLine();
+			i = Integer.parseInt(t);
+			if(i==0)
 			{
 				System.out.println("Enter new budget");
-				//take input
-				System.out.println("Enter period");
-				//take input
+				String s = con.readLine();
+				a.setBudget(Integer.parseInt(s));
 				System.out.println(this.toString());
 			}
 			else
 			{
-				Options o = new Options();
+				Options o = new Options(a);
 			}
 		}
         public String toString() 
         {
         	int totInc = 0,totExpen = 0;
-        	for(Income i:incomes)
+        	for(Income i:a.getIncomes())
         	{
         		if(i.type.equals("monthly")) totInc += i.value;
         		else if(i.type.equals("annually")) totInc += i.value/12;
         		else if(i.type.equals("quartely")) totInc += i.value/3;
         	}
-        	for(Expenditure e:expenses)
+        	for(Expenditure e:a.getExpenses())
         	{
         		if(e.type.equals("monthly")) totExpen += e.value;
         		else if(e.type.equals("annually")) totExpen += e.value/12;
         		else if(e.type.equals("quartely")) totExpen += e.value/3;
         	}
-        	String s1,s2;
-        	s2 = "Budget: "+ budget+"; Budget Type: "+ budgetType;
-        	if(totInc>totExpen)
+        	String s2;
+        	s2 = "Budget: "+ a.getBudget()+"; Budget Type: "+ a.budgetType;
+        	String s1;
+        	if(totInc<a.getBudget())
         	{
-        		s1 = "You are under-budget by "+(totInc - totExpen);
+        		s1 = "Your budget exceeds your income this month by "+(a.getBudget()-totInc);
         	}
-        	else if(totExpen>totInc)
+        	else if(totExpen>a.getBudget())
         	{
-        		s1 = "You are over-budget by "+(totExpen - totInc);
+        		s1 = "Your expenditure exceeds your budget this month by "+(totExpen - a.getBudget());
         	}
         	else
         	{
         		s1 = "Your income and expenditure match, consider saving you money";
         	}
-			return s2+"\n"+s1;			
+			return s2 + s1;			
 		}
 	}
 	public class Savings
 	{
+		int totInc = 0,totExpen = 0;
 		Savings()
 		{
-			
+			for(Income i:a.getIncomes())
+        	{
+        		if(i.type.equals("monthly")) totInc += i.value;
+        		else if(i.type.equals("annually")) totInc += i.value/12;
+        		else if(i.type.equals("quartely")) totInc += i.value/3;
+        	}
+        	for(Expenditure e:a.getExpenses())
+        	{
+        		if(e.type.equals("monthly")) totExpen += e.value;
+        		else if(e.type.equals("annually")) totExpen += e.value/12;
+        		else if(e.type.equals("quartely")) totExpen += e.value/3;
+        	}
+        	
 		}	
 		public String toString()
-		{
-			
-			return null;
+		{		
+        	String s1;
+        	if(totInc>totExpen)
+        	{
+        		s1 = "You are saving "+(totInc - totExpen)+" this month";
+        	}
+        	else if(totExpen>totInc)
+        	{
+        		s1 = "You will be in debt of "+(totExpen - totInc)+ " this month";
+        	}
+        	else
+        	{
+        		s1 = "Your income and expenditure match, consider saving you money";
+        	}
+			return "\n"+s1;
 		}
 		
 	}
 	public void updation() {
 		LocalDate currentLoginDate = LocalDate.now();
-	    if (lastLoginDate == null) {
-	        lastLoginDate = currentLoginDate;
+	    if (a.lastLoginDate == null) {
+	        a.lastLoginDate = currentLoginDate;
 	        return;
 	    }
 
-	    int yearDiff = currentLoginDate.getYear() - lastLoginDate.getYear();
-	    int monthDiff = currentLoginDate.getMonthValue() - lastLoginDate.getMonthValue();
+	    int yearDiff = currentLoginDate.getYear() - a.lastLoginDate.getYear();
+	    int monthDiff = currentLoginDate.getMonthValue() - a.lastLoginDate.getMonthValue();
 	    int totalMonths = yearDiff * 12 + monthDiff;
 
 	    int totalYears = totalMonths / 12;
 	    int totalQuarters = totalMonths / 3;
 
-	    for (Income income : incomes) {
+	    for (Income income : a.getIncomes()) {
 	        if (income.type.equals("monthly")) 
 	        {
-	            balance += income.value * totalMonths;
+	            a.setBalance(a.getBalance() + (long)income.value * totalMonths);
 	        } 
 	        else if (income.type.equals("quarterly")) 
 	        {
-	            balance += income.value * totalQuarters;
+	            a.setBalance(a.getBalance() + (long)income.value * totalQuarters);
 	        } 
 	        else if (income.type.equals("annually")) 
 	        {
-	            balance += income.value * totalYears;
+	           a.setBalance(a.getBalance() + (long)income.value * totalYears);
 	        }
 	    }
 
-	    for (Expenditure expense : expenses) {
+	    for (Expenditure expense : a.getExpenses()) {
 	        if (expense.type.equals("monthly")) 
 	        {
-	            balance -= expense.value * totalMonths;
+	        	a.setBalance(a.getBalance() - (long)expense.value * totalMonths);
 	        } 
 	        else if (expense.type.equals("quarterly")) 
 	        {
-	            balance -= expense.value * totalQuarters;
+	        	a.setBalance(a.getBalance() - (long)expense.value * totalQuarters);
 	        } 
 	        else if (expense.type.equals("annually")) 
 	        {
-	            balance -= expense.value * totalYears;
+	        	a.setBalance(a.getBalance() - (long)expense.value * totalYears);
 	        }
 	    }
 
-	    lastLoginDate = currentLoginDate;
+	    a.lastLoginDate = currentLoginDate;
 	}
 }

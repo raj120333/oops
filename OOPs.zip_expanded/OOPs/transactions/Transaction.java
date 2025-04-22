@@ -8,6 +8,6 @@ public class Transaction {
 	Transaction()
 	{
 		value = 0;
-		type = "Monthly";
+		type = "monthly";
 	}
 }

@@ -1,8 +1,11 @@
 package OOPs.access;
 
 import OOPs.*;
+
+import java.io.Console;
 import java.util.List;
 public class Access {
+	Console con = System.console();
 	boolean type;//type if true means login and if false sign up
 	List<Account> accounts;
 	String username;
@@ -14,14 +17,14 @@ public class Access {
 	public Account login()
 	{
 		System.out.println("Enter username");
-		//take username as input
+		username = con.readLine();
 		Account c = this.trav_array(accounts, username);
 		int j =0;
 		while(c == null && j<3)
 		{
 			System.out.println("Account does not exist!!");
 			System.out.println("Enter username");
-			//take username as input
+			username = con.readLine();
 			c = this.trav_array(accounts, username);
 			j++;
 		}
@@ -34,12 +37,14 @@ public class Access {
 		while(i<3)
 		{
 			System.out.println("Enter password or enter 0 to get OTP");
-			//take password as input
+			char[] p;
+			p = con.readPassword();
+			password = String.valueOf(p);
 			if(c.getPassword().equals(password)) return c;
 			else if(i>=1 && password.equals("0"))
 			{
 				OTP otp = new OTP();
-				if(otp.verify()) return c;
+				if(otp.verify(c.getPhone(),c.getEmail())) return c;
 				System.out.println("Wrong OTP");
 			}
 			else
@@ -54,7 +59,7 @@ public class Access {
 	public Account signup()
 	{
 		System.out.println("Enter your preferred username");
-		//take username as input
+		username = con.readLine();
 		Account a = this.trav_array(accounts, username);
 		if(a == null)
 		{
@@ -66,7 +71,7 @@ public class Access {
 		{
 			System.out.println("Account already exists!!");
 			System.out.println("Enter your preferred username");
-			//take username as input
+			username = con.readLine();
 			a = this.trav_array(accounts, username);
 			j++;
 		}
@@ -79,7 +84,7 @@ public class Access {
 		{
 			a = new Account(username);
 			OTP otp = new OTP();
-			boolean v = otp.verify();
+			boolean v = otp.verify(a.getPhone(),a.getEmail());
 			if(v)
 			{
 				accounts.add(a);
@@ -89,7 +94,7 @@ public class Access {
 			{
 				System.out.println("Wrong OTP");
 				otp = new OTP();
-				v = otp.verify();
+				v = otp.verify(a.getPhone(),a.getEmail());
 				if(v)
 				{
 					accounts.add(a);

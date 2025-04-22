@@ -1,6 +1,5 @@
 package OOPs.options;
 
-import OOPs.Account;
 import OOPs.transactions.*;
 public interface option {
 	
@@ -8,7 +7,5 @@ public interface option {
 	
 	void add();
 	
-	void displayBalance();
-	
-	
+	void delete(int i);
 }
