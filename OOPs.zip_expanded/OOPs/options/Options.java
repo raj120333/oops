@@ -187,7 +187,7 @@ public class Options{
 			        i = Integer.parseInt(t);
 			        break; // Exit the loop if parsing is successful
 			    } catch (NumberFormatException e) {
-			        System.out.println("Choose a valid option: ");
+			    	Options o = new Options(a);
 			    }
 			}
 			if(i==0)

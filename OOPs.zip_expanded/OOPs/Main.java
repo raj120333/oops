@@ -1,6 +1,8 @@
 package OOPs;
 
 import OOPs.access.Access;
+import OOPs.exception.WrongFormatException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.io.*;
@@ -8,7 +10,7 @@ import OOPs.options.*;
 
 public class Main {
 	private static List<Account> accounts = new ArrayList<>();
-    public static void main(String args[])
+    public static void main(String args[]) throws WrongFormatException
     {
     	Console con = System.console();
         System.out.println("Welcome to FinBits");

@@ -62,7 +62,7 @@ public class Account
 		//convert input
 		System.out.println("Enter your email: ");
 		this.email = con.readLine();
-		int i = 0b00;
+		/*int i = 0b00;
 		 for(int j = 0;i<email.length();i++)
 		 {
 			 if(email.charAt(j)=='@') i += 0b01;
@@ -71,7 +71,7 @@ public class Account
 		 if(!(i==0b11))
 		 {
 			 throw new WrongFormatException("Invalid email address");
-		 }
+		 }*/
 		System.out.println("Enter your password: ");
 		char[] pass;
 		pass = con.readPassword();
