@@ -4,6 +4,8 @@ import java.io.Console;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import OOPs.exception.WrongFormatException;
 import OOPs.transactions.*;
 
 
@@ -17,7 +19,7 @@ public class Account
 	protected int savings;
 	public int IncomeNo;
 	public int ExpenditureNo;
-	boolean type; //tells whether account is savings or business account savings=0 and business=1
+	boolean type; //tells whether account is savings or business account savings = 0 and business=1
 	private List<Income> incomes = new ArrayList<>();
 	protected List<Expenditure> expenses = new ArrayList<>();
 	private long balance;
@@ -37,7 +39,7 @@ public class Account
 		this.setBudget(0);
 		this.budgetType = "monthly";
 	}
-	public Account(String username)
+	public Account(String username) throws WrongFormatException
 	{
 		IncomeNo = 0;
 		ExpenditureNo = 0;
@@ -46,6 +48,10 @@ public class Account
 			System.out.println("Enter your phone: ");
 			String p;
 		    p = con.readLine();
+		    if(!(p.length()==10))
+		    {
+		    	throw new WrongFormatException("The phone number is not ten digits");
+		    }
 		    try {
 		        this.phone = Long.parseLong(p);
 		        break; // Exit the loop if parsing is successful
@@ -56,9 +62,23 @@ public class Account
 		//convert input
 		System.out.println("Enter your email: ");
 		this.email = con.readLine();
+		int i = 0b00;
+		 for(int j = 0;i<email.length();i++)
+		 {
+			 if(email.charAt(j)=='@') i += 0b01;
+			 if(email.charAt(j)=='.') i += 0b10;
+		 }
+		 if(!(i==0b11))
+		 {
+			 throw new WrongFormatException("Invalid email address");
+		 }
 		System.out.println("Enter your password: ");
 		char[] pass;
 		pass = con.readPassword();
+		 if(pass.length<8)
+		    {
+		    	throw new WrongFormatException("Password must be 8 characters minimum");
+		    }
 		this.password = String.valueOf(pass);
 		
 		//convert input

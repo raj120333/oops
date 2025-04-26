@@ -1,6 +1,7 @@
 package OOPs.access;
 
 import OOPs.*;
+import OOPs.exception.WrongFormatException;
 
 import java.io.Console;
 import java.util.List;
@@ -56,7 +57,7 @@ public class Access {
 		System.exit(0);
 		return null;
 	}
-	public Account signup()
+	public Account signup() throws WrongFormatException
 	{
 		System.out.println("Enter your preferred username");
 		username = con.readLine();
