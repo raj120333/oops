@@ -319,15 +319,15 @@ public class Options{
         	String s1;
         	if(totInc<a.getBudget())
         	{
-        		s1 = "/nYour budget exceeds your income this month by "+(a.getBudget()-totInc);
+        		s1 = "\nYour budget exceeds your income this month by "+(a.getBudget()-totInc);
         	}
         	else if(totExpen>a.getBudget())
         	{
-        		s1 = "/nYour expenditure exceeds your budget this month by "+(totExpen - a.getBudget());
+        		s1 = "\nYour expenditure exceeds your budget this month by "+(totExpen - a.getBudget());
         	}
         	else if(totExpen==totInc)
         	{
-        		s1 = "/nYour income and expenditure match, consider saving you money";
+        		s1 = "\nYour income and expenditure match, consider saving you money";
         	}
         	else
         	{
