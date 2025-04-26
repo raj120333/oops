@@ -14,9 +14,10 @@ public class OTP {
 	boolean verify(long phone, String email)
 	{
 		int i;
-		System.out.println("Enter OTP");
-		String s = con.readLine();
 		while (true) {
+			
+			System.out.println("Enter OTP");
+			String s = con.readLine();
 		    s = con.readLine();
 		    try {
 		        i = Integer.parseInt(s);

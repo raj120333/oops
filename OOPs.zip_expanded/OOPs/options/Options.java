@@ -1,4 +1,5 @@
 package OOPs.options;
+
 import java.time.LocalDate;
 
 import OOPs.*;
@@ -15,9 +16,9 @@ public class Options{
 		display();
 		System.out.println("Your budget is "+a.budgetType);
 		int i = 0;
-		System.out.println("Choose:/n 1.Income /n 2.Expenditure /n 3.Budget /n 4.Savings/n Enter 0 to exit");
-		String t = con.readLine();
 		while (true) {
+			String t;
+			System.out.println("Choose:/n 1.Income /n 2.Expenditure /n 3.Budget /n 4.Savings/n Enter 0 to exit");
 		    t = con.readLine();
 		    try {
 		        i = Integer.parseInt(t);
@@ -55,11 +56,10 @@ public class Options{
 			{
 				System.out.println((i+1)+". "+this.toString(a.getIncomes().get(i)));
 			}
-			System.out.println("Press 0 to add an income, Press the nth income to edit it, Press any other key to go to options");
 			int i;
-			String t = con.readLine();
 			while (true) {
-			    t = con.readLine();
+				System.out.println("Press 0 to add an income, Press the nth income to edit it, Press any other key to go to options");
+			    String t = con.readLine();
 			    try {
 			        i = Integer.parseInt(t);
 			        break; // Exit the loop if parsing is successful
@@ -74,24 +74,39 @@ public class Options{
 			else if(1<=i && i<=a.getIncomes().size()+1)
 			{
 				int j;
-				System.out.println("Do you want to edit or delete the income? Press 1 to edit and 0 to delete and any other key to go to options");
-				String k = con.readLine();
-				j = Integer.parseInt(k);
+				while (true) {
+					System.out.println("Do you want to edit or delete the income? Press 1 to edit and 0 to delete and any other key to go to options");
+				    String k = con.readLine();
+				    try {
+				        j = Integer.parseInt(k);
+				        break; // Exit the loop if parsing is successful
+				    } catch (NumberFormatException e) {
+				        System.out.println("Choose a valid option: ");
+				    }
+				}
 				if(j==1) {
 				String username;
 				float value;
 				String type;
 				System.out.println("Enter income name: ");
 				username = con.readLine();
-				System.out.println("Enter how much income: ");
-				String s = con.readLine();
-				value = Float.parseFloat(s);
-				System.out.println("Enter the type of income default: monthly; Type 1. one-time \n2. quarterly \n3.annually");
+				
+				while (true) {
+					System.out.println("Enter how much income: ");
+				    String s = con.readLine();
+				    try {
+				        value = Float.parseFloat(s);
+				        break; // Exit the loop if parsing is successful
+				    } catch (NumberFormatException e) {
+				        System.out.println("Choose a valid income: ");
+				    }
+				}
 				int l;
 				while (true) {
-				    s = con.readLine();
+					System.out.println("Enter the type of income default: monthly; Type: \n1. one-time \n2. quarterly \n3.annually");
+				    String s = con.readLine();
 				    try {
-				        l = Integer.parseInt(t);
+				        l = Integer.parseInt(s);
 				        break; // Exit the loop if parsing is successful
 				    } catch (NumberFormatException e) {
 				        System.out.println("Choose a valid option: ");
@@ -145,7 +160,7 @@ public class Options{
 		{
 			Income I = (Income) t;
 			display();
-			return ""+I.username+" : Rs."+I.value+" : "+ I.type;		
+			return ""+I.username+" : Rs."+I.value+" : "+ I.type;	
 	    }
 		public void delete(int i) 
 		{
@@ -161,7 +176,7 @@ public class Options{
 		{
 			for(int i = 0;i<a.getExpenses().size();i++)
 			{
-				System.out.println("\n"+this.toString(a.getExpenses().get(i)));
+				System.out.println((i+1)+". "+this.toString(a.getExpenses().get(i)));
 			}
 			System.out.println("Press 0 to add an expense, Press the nth expense to edit it, Press any other key to go to options");
 			int i;
@@ -191,19 +206,18 @@ public class Options{
 				while (true) {
 				    s = con.readLine();
 				    try {
-				        value = Float.parseFloat(t);
+				        value = Float.parseFloat(s);
 				        break; // Exit the loop if parsing is successful
 				    } catch (NumberFormatException e) {
 				        System.out.println("Enter a valid number: ");
 				    }
 				}
-				System.out.println("Enter the type of expense default: monthly; Type 1. one-time \n2. quarterly \n3.annually");
-				s = con.readLine();
+				System.out.println("Enter the type of expense default: monthly; Type: \n1. one-time \n2. quarterly \n3.annually");
 				int l;
 				while (true) {
-				    t = con.readLine();
+				    s = con.readLine();
 				    try {
-				        l = Integer.parseInt(t);
+				        l = Integer.parseInt(s);
 				        break; // Exit the loop if parsing is successful
 				    } catch (NumberFormatException e) {
 				        System.out.println("Choose a valid option: ");
@@ -261,11 +275,10 @@ public class Options{
 		Budget()
 		{
 			System.out.println(this.toString());
-			System.out.println("Type 0 to edit the Budget and anything else to go back to options menu");
 			int i;
-			String t = con.readLine();
 			while (true) {
-			    t = con.readLine();
+				System.out.println("Type 0 to edit the Budget and anything else to go back to options menu");
+			    String t = con.readLine();
 			    try {
 			        i = Integer.parseInt(t);
 			        break; // Exit the loop if parsing is successful

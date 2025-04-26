@@ -41,9 +41,10 @@ public class Account
 	{
 		IncomeNo = 0;
 		ExpenditureNo = 0;
-		System.out.println("Enter your phone: ");
-		String p;
+		
 		while (true) {
+			System.out.println("Enter your phone: ");
+			String p;
 		    p = con.readLine();
 		    try {
 		        this.phone = Long.parseLong(p);
@@ -59,11 +60,11 @@ public class Account
 		char[] pass;
 		pass = con.readPassword();
 		this.password = String.valueOf(pass);
-		System.out.println("Enter your current Balance: ");
-		String b;
+		
 		//convert input
 		while (true) {
-		   
+			System.out.println("Enter your current Balance: ");
+			String b;
 		    b = con.readLine();
 		    try {
 		        this.phone = Long.parseLong(b);
