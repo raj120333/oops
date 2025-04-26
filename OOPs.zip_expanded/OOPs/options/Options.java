@@ -12,11 +12,20 @@ public class Options{
 	{
 		this.a = a;
 		updation();
+		display();
 		System.out.println("Your budget is "+a.budgetType);
 		int i = 0;
 		System.out.println("Choose:/n 1.Income /n 2.Expenditure /n 3.Budget /n 4.Savings/n Enter 0 to exit");
 		String t = con.readLine();
-		i = Integer.parseInt(t);
+		while (true) {
+		    t = con.readLine();
+		    try {
+		        i = Integer.parseInt(t);
+		        break; // Exit the loop if parsing is successful
+		    } catch (NumberFormatException e) {
+		        System.out.println("Choose a valid option: ");
+		    }
+		}
 		switch(i)
 		{
 		case 0:
@@ -49,7 +58,15 @@ public class Options{
 			System.out.println("Press 0 to add an income, Press the nth income to edit it, Press any other key to go to options");
 			int i;
 			String t = con.readLine();
-			i = Integer.parseInt(t);
+			while (true) {
+			    t = con.readLine();
+			    try {
+			        i = Integer.parseInt(t);
+			        break; // Exit the loop if parsing is successful
+			    } catch (NumberFormatException e) {
+			        System.out.println("Choose a valid option: ");
+			    }
+			}
 			if(i==0)
 			{
 				add();
@@ -60,7 +77,7 @@ public class Options{
 				System.out.println("Do you want to edit or delete the income? Press 1 to edit and 0 to delete and any other key to go to options");
 				String k = con.readLine();
 				j = Integer.parseInt(k);
-				if(j==0) {
+				if(j==1) {
 				String username;
 				float value;
 				String type;
@@ -70,8 +87,16 @@ public class Options{
 				String s = con.readLine();
 				value = Float.parseFloat(s);
 				System.out.println("Enter the type of income default: monthly; Type 1. one-time \n2. quarterly \n3.annually");
-				s = con.readLine();
-				int l = Integer.parseInt(s);
+				int l;
+				while (true) {
+				    s = con.readLine();
+				    try {
+				        l = Integer.parseInt(t);
+				        break; // Exit the loop if parsing is successful
+				    } catch (NumberFormatException e) {
+				        System.out.println("Choose a valid option: ");
+				    }
+				}
 				switch(l)
 				{
 				case 1:
@@ -87,18 +112,23 @@ public class Options{
 					type = "monthly";
 				}
 				a.getIncomes().set(i-1, new Income(username, value, type));
+				IncomeOption o = new IncomeOption();
 				}
-				else if(j==1)
+				else if(j==0)
 				{
 					delete(i);
+					display();
+					IncomeOption o = new IncomeOption();
 				}
 				else
 				{
+					display();
 					Options o = new Options(a);
 				}
 			}
 			else
 			{
+				display();
 				Options o = new Options(a);
 			}
 		}
@@ -108,17 +138,21 @@ public class Options{
 			a.getIncomes().add(I);
 	        a.IncomeNo++;
 	        System.out.println("Income added: " + I.username + " | Amount: " + I.value);
+	        display();
+	        IncomeOption o = new IncomeOption();
 		}
 		public String toString(Transaction t)
 		{
 			Income I = (Income) t;
+			display();
 			return ""+I.username+" : Rs."+I.value+" : "+ I.type;		
 	    }
 		public void delete(int i) 
 		{
 			a.getIncomes().remove(i-1);
 			a.IncomeNo--;
-			IncomeOption o = new IncomeOption();
+			display();
+			IncomeOption o = new IncomeOption(); 
 		}  
 	}
 	public class ExpenditureOption implements option
@@ -132,7 +166,15 @@ public class Options{
 			System.out.println("Press 0 to add an expense, Press the nth expense to edit it, Press any other key to go to options");
 			int i;
 			String t = con.readLine();
-			i = Integer.parseInt(t);
+			while (true) {
+			    t = con.readLine();
+			    try {
+			        i = Integer.parseInt(t);
+			        break; // Exit the loop if parsing is successful
+			    } catch (NumberFormatException e) {
+			        System.out.println("Choose a valid option: ");
+			    }
+			}
 			if(i==0)
 			{
 				add();
@@ -145,11 +187,28 @@ public class Options{
 				System.out.println("Enter expense name: ");
 				username = con.readLine();
 				System.out.println("Enter how much expense: ");
-				String s = con.readLine();
-				value = Float.parseFloat(s);
+				String s;
+				while (true) {
+				    s = con.readLine();
+				    try {
+				        value = Float.parseFloat(t);
+				        break; // Exit the loop if parsing is successful
+				    } catch (NumberFormatException e) {
+				        System.out.println("Enter a valid number: ");
+				    }
+				}
 				System.out.println("Enter the type of expense default: monthly; Type 1. one-time \n2. quarterly \n3.annually");
 				s = con.readLine();
-				int l = Integer.parseInt(s);
+				int l;
+				while (true) {
+				    t = con.readLine();
+				    try {
+				        l = Integer.parseInt(t);
+				        break; // Exit the loop if parsing is successful
+				    } catch (NumberFormatException e) {
+				        System.out.println("Choose a valid option: ");
+				    }
+				}
 				switch(l)
 				{
 				case 1:
@@ -165,9 +224,12 @@ public class Options{
 					type = "monthly";
 				}
 				a.getExpenses().set(i-1, new Expenditure(username, value, type));
+				display();
+				ExpenditureOption o = new ExpenditureOption();
 			}
 			else
 			{
+				display();
 				Options o = new Options(a);
 			}
 		}
@@ -176,7 +238,8 @@ public class Options{
 			a.getExpenses().add(E);
 	        a.ExpenditureNo++;
 	        System.out.println("Expense added: " + E.username + " | Amount: " + E.value);
-			
+	        display();
+	        ExpenditureOption o = new ExpenditureOption();
 		}
 
 		public String toString(Transaction t) 
@@ -189,6 +252,7 @@ public class Options{
 		{
 			a.getExpenses().remove(i-1);
 			a.ExpenditureNo--;
+			display();
 			ExpenditureOption o = new ExpenditureOption();
 		}
 	}
@@ -200,7 +264,15 @@ public class Options{
 			System.out.println("Type 0 to edit the Budget and anything else to go back to options menu");
 			int i;
 			String t = con.readLine();
-			i = Integer.parseInt(t);
+			while (true) {
+			    t = con.readLine();
+			    try {
+			        i = Integer.parseInt(t);
+			        break; // Exit the loop if parsing is successful
+			    } catch (NumberFormatException e) {
+			        System.out.println("Choose a valid option: ");
+			    }
+			}
 			if(i==0)
 			{
 				System.out.println("Enter new budget");
@@ -210,6 +282,7 @@ public class Options{
 			}
 			else
 			{
+				display();
 				Options o = new Options(a);
 			}
 		}
@@ -233,15 +306,19 @@ public class Options{
         	String s1;
         	if(totInc<a.getBudget())
         	{
-        		s1 = "Your budget exceeds your income this month by "+(a.getBudget()-totInc);
+        		s1 = "/nYour budget exceeds your income this month by "+(a.getBudget()-totInc);
         	}
         	else if(totExpen>a.getBudget())
         	{
-        		s1 = "Your expenditure exceeds your budget this month by "+(totExpen - a.getBudget());
+        		s1 = "/nYour expenditure exceeds your budget this month by "+(totExpen - a.getBudget());
+        	}
+        	else if(totExpen==totInc)
+        	{
+        		s1 = "/nYour income and expenditure match, consider saving you money";
         	}
         	else
         	{
-        		s1 = "Your income and expenditure match, consider saving you money";
+        		s1 = "You are within your budget";
         	}
 			return s2 + s1;			
 		}
@@ -263,7 +340,9 @@ public class Options{
         		else if(e.type.equals("annually")) totExpen += e.value/12;
         		else if(e.type.equals("quartely")) totExpen += e.value/3;
         	}
-        	
+        	toString();
+        	display();
+        	Options o = new Options(a);
 		}	
 		public String toString()
 		{		
@@ -329,5 +408,25 @@ public class Options{
 	    }
 
 	    a.lastLoginDate = currentLoginDate;
+	}
+	
+	public void display()
+	{
+		System.out.println("Your balance is: "+a.getBalance());	
+		int totInc = 0,totExpen = 0;
+    	for(Income i:a.getIncomes())
+    	{
+    		if(i.type.equals("monthly")) totInc += i.value;
+    		else if(i.type.equals("annually")) totInc += i.value/12;
+    		else if(i.type.equals("quartely")) totInc += i.value/3;
+    	}
+    	for(Expenditure e:a.getExpenses())
+    	{
+    		if(e.type.equals("monthly")) totExpen += e.value;
+    		else if(e.type.equals("annually")) totExpen += e.value/12;
+    		else if(e.type.equals("quartely")) totExpen += e.value/3;
+    	}
+    	System.out.println("Your net income is: "+totInc);
+    	System.out.println("Your net expenditure is: "+totExpen);
 	}
 }

@@ -43,7 +43,15 @@ public class Account
 		ExpenditureNo = 0;
 		System.out.println("Enter your phone: ");
 		String p;
-		p = con.readLine();
+		while (true) {
+		    p = con.readLine();
+		    try {
+		        this.phone = Long.parseLong(p);
+		        break; // Exit the loop if parsing is successful
+		    } catch (NumberFormatException e) {
+		        System.out.println("Invalid mobile number entered.\nPlease enter a valid mobile number.");
+		    }
+		}
 		//convert input
 		System.out.println("Enter your email: ");
 		this.email = con.readLine();
@@ -53,8 +61,17 @@ public class Account
 		this.password = String.valueOf(pass);
 		System.out.println("Enter your current Balance: ");
 		String b;
-		b = con.readLine();
 		//convert input
+		while (true) {
+		   
+		    b = con.readLine();
+		    try {
+		        this.phone = Long.parseLong(b);
+		        break; // Exit the loop if parsing is successful
+		    } catch (NumberFormatException e) {
+		        System.out.println("Invalid balance entered.\nPlease enter a valid balance");
+		    }
+		}
 	}
 	public String getUsername()
 	{

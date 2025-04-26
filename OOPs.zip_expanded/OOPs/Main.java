@@ -14,9 +14,8 @@ public class Main {
         System.out.println("Welcome to FinBits");
         System.out.println("Enter 1 for login, 0 for signup and anything else for exiting");
         String i = con.readLine();
-        //take input into check input
         Access a = new Access(check(i),accounts);
-        Account current = a.login();
+        Account current;
         if(check(i))
         {
         	current = a.login();

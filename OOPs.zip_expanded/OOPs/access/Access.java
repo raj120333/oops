@@ -32,7 +32,7 @@ public class Access {
 		{
 			System.exit(0);
 		}
-		String password = "";
+		String password;
 		int i =0;
 		while(i<3)
 		{
