@@ -180,7 +180,7 @@ public class Options{
 			}
 			System.out.println("Press 0 to add an expense, Press the nth expense to edit it, Press any other key to go to options");
 			int i;
-			String t = con.readLine();
+			String t;
 			while (true) {
 			    t = con.readLine();
 			    try {
